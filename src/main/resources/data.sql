@@ -9,12 +9,12 @@ insert into Country (id, name, code) values
 (2, 'Мадагаскар', 123),
 (3, 'Кипр', 399);
 
-insert into Organization (id, name, fullName, inn, kpp, address, phone, isActive, version) values
+insert into Organization (id, name, full_name, inn, kpp, address, phone, is_active, version) values
 (1, 'OOO Вектор', 'Общество с ограниченной ответственностью "Вектор"', '1171174545', '775782780', 'Россия, г.Уфа, ул. Кислотная, д.45', '+7 347 228 69 36', 'true', 0),
 (2, 'ИП Сакаев И.Н.', 'Индивидуальный предприниматель Сакаев Ильдар Наилевич', '0278030578', '145102789', 'Россия, г.Уфа, бульвар Ибрагимова, 99', '+7 347 66 66 66', 'true', 0),
 (3, 'ООО Скорбим', 'Общество с ограниченной ответственностью "Скорбим"', '640789451', '789741753', 'Россия, г.Уфа, ул. Фронтовых бригад, д.1', '+7 347 88 89 88', 'true', 0);
 
-insert into Office (id, orgId, name, address, phone, isActive, version) values
+insert into Office (id, org_id, name, address, phone, is_active, version) values
 (1, 1, 'Головной офис', 'Россия, г.Уфа, ул. Айская, д.59', '+7 347 224 56 62', true, 0),
 (2, 1, 'Производственная база', 'Россия, г.Уфа, Соединительное шоссе, д.1', '+7 347 218 77 77', true, 0),
 (3, 2, 'Розничный магазин "Свадьба102"', 'Россия, г.Уфа, проспект Октября, д.70', '+7 347 234 51 10', true, 0),
@@ -22,7 +22,7 @@ insert into Office (id, orgId, name, address, phone, isActive, version) values
 (5, 3, 'Дополнительный офис "Небеса"', 'Россия, г.Санкт-Петербург, ул.Площадь Восстания, д.12', '+7 812 322 19 10', true, 0),
 (6, 3, 'Оптовый центр продаж', 'Россия, г.Уфа, ул. Рижская, д.5', '+7 347 218 34 32', false, 0);
 
-insert into User (id, officeId, firstName, secondName, middleName, position, phone, docCode, docName, docNumber, docDate, citizenshipCode, isIdentified, version) VALUES
+insert into User (id, office_id, first_name, second_name, middle_name, position, phone, doc_code, doc_name, doc_number, doc_date, citizenship_code, is_identified, version) VALUES
 (1, 1, 'Артем', 'Андреев', 'Петрович', 'Генеральный директор', '+7 917 345 12 11', 1, 'паспорт гражданина РФ', '8010 990807', '2014-10-01', 1, true, 0),
 (2, 1, 'Снежана', 'Семенова', 'Денисовна', 'Заведующая хозяйством', '+7 987 100 01 11', 1, 'паспорт гражданина РФ', '8009 991817', '2008-11-15', 1, true, 0),
 (3, 2, 'Владислав', 'Ильмурзин', 'Владимирович', 'Водитель-экспедитор', '+7 909 350 88 78', 2, 'удостоверение беженца', '8007 545796', '2000-09-01', 2, true, 0),
