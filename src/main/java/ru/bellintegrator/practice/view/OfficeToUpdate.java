@@ -3,17 +3,12 @@ package ru.bellintegrator.practice.view;
 /**
  * Класс представления офиса
  */
-public class OfficeView {
+public class OfficeToUpdate {
 
     /**
      * Идентификатор офиса
      */
     public Long id;
-
-    /**
-     * Идентификатор организации, которой принадлежит офис
-     */
-    public Long orgId;
 
     /**
      * Название офиса
@@ -39,7 +34,6 @@ public class OfficeView {
     public String toString() {
         return "{ id:" + id +
                 "; name: \"" + name +
-                "\"; orgId: " + orgId +
                 "; address: \"" + address +
                 "\"; phone: \"" + phone +
                 "\"; isActive: " + isActive + " }";

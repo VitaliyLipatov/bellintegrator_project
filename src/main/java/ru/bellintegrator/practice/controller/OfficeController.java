@@ -3,9 +3,10 @@ package ru.bellintegrator.practice.controller;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.bellintegrator.practice.service.OfficeService;
 import ru.bellintegrator.practice.view.OfficeListFilter;
 import ru.bellintegrator.practice.view.OfficeToSave;
-import ru.bellintegrator.practice.view.OfficeView;
+import ru.bellintegrator.practice.view.OfficeToUpdate;
 
 import java.util.List;
 
@@ -33,12 +34,12 @@ public class OfficeController {
     /**
      * Возвращает отфильтрованный список офисов.
      *
-     * @param filter фильтр для спика
+     * @param filter фильтр для спиcка
      * @return отфильтрованный список
      */
     @ApiOperation(value = "Get office list by filter", nickname = "getOfficeListByFilter", httpMethod = "POST")
     @PostMapping("/list")
-    public List<OfficeView> list(@RequestBody OfficeListFilter filter) {
+    public List<OfficeToUpdate> list(@RequestBody OfficeListFilter filter) {
         return officeService.list(filter);
     }
 
@@ -50,7 +51,7 @@ public class OfficeController {
      */
     @ApiOperation(value = "Get office by id", nickname = "getOfficeById", httpMethod = "GET")
     @GetMapping("/id")
-    public OfficeView getById(@PathVariable Long id) {
+    public OfficeToUpdate getById(@PathVariable Long id) {
         return officeService.getById(id);
     }
 
@@ -61,7 +62,7 @@ public class OfficeController {
      */
     @ApiOperation(value = "Update office", nickname = "updateOffice", httpMethod = "POST")
     @PostMapping("/update")
-    public void update(@RequestBody OfficeView view) {
+    public void update(@RequestBody OfficeToUpdate view) {
         officeService.update(view);
     }
 

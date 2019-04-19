@@ -1,14 +1,19 @@
 package ru.bellintegrator.practice.view;
 
 /**
- * Класс представления пользователя
+ * Класс обновления входных данных клиента
  */
-public class UserView {
+public class UserToUpdate {
 
     /**
      * Идентификатор пользователя
      */
     public Long id;
+
+    /**
+     * Идентификатор офиса, к которому относится пользователь
+     */
+    public Long officeId;
 
     /**
      * Имя пользователя
@@ -51,11 +56,6 @@ public class UserView {
     public String docDate;
 
     /**
-     * Гражданство пользователя
-     */
-    public String citizenshipName;
-
-    /**
      * Код города пользователя
      */
     public String citizenshipCode;
@@ -67,8 +67,9 @@ public class UserView {
 
     @Override
     public String toString() {
-        return "UserView{" +
+        return "UserToUpdate{" +
                 "id=" + id +
+                ", officeId=" + officeId +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", middleName='" + middleName + '\'' +
@@ -77,7 +78,6 @@ public class UserView {
                 ", docName='" + docName + '\'' +
                 ", docNumber='" + docNumber + '\'' +
                 ", docDate='" + docDate + '\'' +
-                ", citizenshipName='" + citizenshipName + '\'' +
                 ", citizenshipCode='" + citizenshipCode + '\'' +
                 ", isIdentified=" + isIdentified +
                 '}';
