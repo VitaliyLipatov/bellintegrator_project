@@ -30,18 +30,15 @@ create TABLE IF NOT EXISTS User (
     middle_name         VARCHAR(50),
     position            VARCHAR(50) NOT NULL,
     phone               VARCHAR(20),
-    citizenship_code    VARCHAR(30) NOT NULL,
     is_identified       BOOLEAN NOT NULL,
     version             INTEGER NOT NULL
     );
 
 create TABLE IF NOT EXISTS Doc (
-    id                  INTEGER PRIMARY KEY AUTO_INCREMENT,
-    doc_type_id         INTEGER NOT NULL,
-    doc_code            VARCHAR(20) NOT NULL,
-    doc_name            VARCHAR(50) NOT NULL,
-    doc_number          VARCHAR(50) NOT NULL,
-    doc_date            VARCHAR(50) NOT NULL
+    id              INTEGER PRIMARY KEY AUTO_INCREMENT,
+    type_id         INTEGER NOT NULL,
+    number          VARCHAR(50) NOT NULL,
+    date            VARCHAR(50) NOT NULL
     );
 
 create TABLE IF NOT EXISTS Doc_Type(
@@ -68,5 +65,5 @@ alter table User add FOREIGN KEY (doc_id) REFERENCES Doc(id);
 create INDEX IX_User_Country_Id ON User(country_id);
 alter table User add FOREIGN KEY (country_id) REFERENCES Country(id);
 
-create INDEX IX_Doc_Doc_Type_Id ON Doc(doc_type_id);
-alter table Doc add FOREIGN KEY (doc_type_id) REFERENCES Doc_Type(id);
+create INDEX IX_Doc_Doc_Type_Id ON Doc(type_id);
+alter table Doc add FOREIGN KEY (type_id) REFERENCES Doc_Type(id);
