@@ -6,14 +6,14 @@ package ru.bellintegrator.practice.view;
 public class OfficeToSave {
 
     /**
-     * Название офиса
-     */
-    public String name;
-
-    /**
      * Идентификатор орагнизации, к которой относится офис
      */
     public Long orgId;
+
+    /**
+     * Название офиса
+     */
+    public String name;
 
     /**
      * Адрес офиса
@@ -32,10 +32,12 @@ public class OfficeToSave {
 
     @Override
     public String toString() {
-        return "{ name: \"" + name +
-                "\"; orgId: " + orgId +
-                "; address: \"" + address +
-                "\"; phone: \"" + phone +
-                "\"; isActive: " + isActive + " }";
+        return "OfficeToSave{" +
+                "orgId=" + orgId +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isActive=" + isActive +
+                '}';
     }
 }

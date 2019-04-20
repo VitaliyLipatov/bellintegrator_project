@@ -1,14 +1,9 @@
 package ru.bellintegrator.practice.view;
 
 /**
- * Класс представления организации
+ * Класс для сохранения входных данных новой организации
  */
-public class OrganizationView {
-
-    /**
-     * Идентификатор организации
-     */
-    public Long id;
+public class OrganizationToSave {
 
     /**
      * Название организации
@@ -47,9 +42,8 @@ public class OrganizationView {
 
     @Override
     public String toString() {
-        return "OrganizationView{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "OrganizationToSave{" +
+                "name='" + name + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", inn='" + inn + '\'' +
                 ", kpp='" + kpp + '\'' +

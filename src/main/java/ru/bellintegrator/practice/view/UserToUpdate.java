@@ -1,7 +1,7 @@
 package ru.bellintegrator.practice.view;
 
 /**
- * Класс обновления входных данных клиента
+ * Класс обновления входных данных пользователя
  */
 public class UserToUpdate {
 
@@ -56,7 +56,7 @@ public class UserToUpdate {
     public String docDate;
 
     /**
-     * Код города пользователя
+     * Код гражданства пользователя
      */
     public String citizenshipCode;
 

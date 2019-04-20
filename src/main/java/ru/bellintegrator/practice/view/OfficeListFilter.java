@@ -1,16 +1,19 @@
 package ru.bellintegrator.practice.view;
 
+/**
+ * Класс для фильтрации списка офисов
+ */
 public class OfficeListFilter {
-
-    /**
-     * Название офиса
-     */
-    public String name;
 
     /**
      * Идентификатор организации, к которой относится офис
      */
     public Long orgId;
+
+    /**
+     * Название офиса
+     */
+    public String name;
 
     /**
      * Номер телефона офиса
@@ -24,9 +27,11 @@ public class OfficeListFilter {
 
     @Override
     public String toString() {
-        return "{ orgId: " + orgId +
-                "; name: \"" + name +
-                "\"; phone: \"" + phone +
-                "\"; isActive: " + isActive + " }";
+        return "OfficeListFilter{" +
+                "orgId=" + orgId +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isActive=" + isActive +
+                '}';
     }
 }

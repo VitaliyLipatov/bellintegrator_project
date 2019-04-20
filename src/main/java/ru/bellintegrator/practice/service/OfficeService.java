@@ -7,7 +7,7 @@ import ru.bellintegrator.practice.view.OfficeToUpdate;
 import java.util.List;
 
 /**
- * Интерфейс, представляющий методы для работы с офисами
+ * Интерфейс, предоставляющий методы для работы с офисами
  */
 public interface OfficeService {
 

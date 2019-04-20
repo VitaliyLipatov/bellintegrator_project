@@ -56,7 +56,7 @@ public class UserView {
     public String citizenshipName;
 
     /**
-     * Код города пользователя
+     * Код гражданства пользователя пользователя
      */
     public String citizenshipCode;
 
