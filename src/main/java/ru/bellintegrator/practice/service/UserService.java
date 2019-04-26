@@ -41,11 +41,4 @@ public interface UserService {
      * @param userToSave объект, содержащий информацию о новом пользователе
      */
     void save(UserToSave userToSave);
-
-    /**
-     * Удаляет пользователя с указанным идентификатором
-     *
-     * @param id идентификатор пользователя для удаления
-     */
-    void remove(Long id);
 }

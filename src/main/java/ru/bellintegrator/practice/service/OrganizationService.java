@@ -40,7 +40,4 @@ public interface OrganizationService {
      * @param organizationToSave объект, содержащий информацию о новой организации
      */
     void save(OrganizationToSave organizationToSave);
-
-
-    void remove(Long id);
 }

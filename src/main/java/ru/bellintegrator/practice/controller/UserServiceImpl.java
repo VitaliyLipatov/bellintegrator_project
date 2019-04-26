@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.controller;
 
+import org.springframework.stereotype.Service;
 import ru.bellintegrator.practice.service.UserService;
 import ru.bellintegrator.practice.view.UserListFilter;
 import ru.bellintegrator.practice.view.UserToSave;
@@ -8,6 +9,7 @@ import ru.bellintegrator.practice.view.UserView;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
     @Override
     public List<UserView> list(UserListFilter filter) {
@@ -26,11 +28,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(UserToSave userToSave) {
-
-    }
-
-    @Override
-    public void remove(Long id) {
 
     }
 }

@@ -76,15 +76,4 @@ public class OfficeController {
     public void save(@RequestBody OfficeToSave officeToSave) {
         officeService.save(officeToSave);
     }
-
-    /**
-     * Удаляет офис с указанным идентификатором
-     *
-     * @param id идентификатор офиса для удаления
-     */
-    @ApiOperation(value = "Remove an office", nickname = "removeOffice", httpMethod = "POST")
-    @PostMapping("/remove/{id}")
-    public void remove(@PathVariable Long id) {
-        officeService.remove(id);
-    }
 }

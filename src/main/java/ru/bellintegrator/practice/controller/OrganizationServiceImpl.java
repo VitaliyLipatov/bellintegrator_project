@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.controller;
 
+import org.springframework.stereotype.Service;
 import ru.bellintegrator.practice.service.OrganizationService;
 import ru.bellintegrator.practice.view.OrganizationListFilter;
 import ru.bellintegrator.practice.view.OrganizationToSave;
@@ -7,6 +8,7 @@ import ru.bellintegrator.practice.view.OrganizationView;
 
 import java.util.List;
 
+@Service
 public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public List<OrganizationView> list(OrganizationListFilter filter) {
@@ -25,11 +27,6 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void save(OrganizationToSave organizationToSave) {
-
-    }
-
-    @Override
-    public void remove(Long id) {
 
     }
 }

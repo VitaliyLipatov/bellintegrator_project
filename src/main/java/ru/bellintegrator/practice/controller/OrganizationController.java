@@ -76,15 +76,4 @@ public class OrganizationController {
     public void save(@RequestBody OrganizationToSave organizationToSave) {
         organizationService.save(organizationToSave);
     }
-
-    /**
-     * Удаляет организацию с указанным идентификатором
-     *
-     * @param id идентификатор организации для удаления
-     */
-    @ApiOperation(value = "Remove organization", nickname = "removeOrganization", httpMethod = "POST")
-    @PostMapping("/remove")
-    public void remove(@PathVariable Long id) {
-        organizationService.remove(id);
-    }
 }

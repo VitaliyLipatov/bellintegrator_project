@@ -36,7 +36,7 @@ public class CountriesController {
      *
      * @return список стран и их кодов
      */
-    @ApiOperation(value = "Get coutries list", nickname = "getCountriesList", httpMethod = "POST")
+    @ApiOperation(value = "Get countries list", nickname = "getCountriesList", httpMethod = "POST")
     @PostMapping("/countries")
     public List<CountryView> list() {
         return countriesService.list();

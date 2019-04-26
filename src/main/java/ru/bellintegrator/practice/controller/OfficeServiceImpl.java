@@ -31,9 +31,4 @@ public class OfficeServiceImpl implements OfficeService {
     public void save(OfficeToSave officeToSave) {
 
     }
-
-    @Override
-    public void remove(Long id) {
-
-    }
 }

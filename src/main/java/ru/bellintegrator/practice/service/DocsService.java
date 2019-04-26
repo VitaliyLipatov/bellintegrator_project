@@ -1,6 +1,5 @@
 package ru.bellintegrator.practice.service;
 
-
 import ru.bellintegrator.practice.view.DocTypeView;
 
 import java.util.List;
