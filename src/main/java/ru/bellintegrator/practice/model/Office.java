@@ -71,6 +71,8 @@ public class Office {
     }
 
     /**
+     * Конструктор
+     *
      * @param name         название офиса
      * @param address      адрес офиса
      * @param phone        номер телефона

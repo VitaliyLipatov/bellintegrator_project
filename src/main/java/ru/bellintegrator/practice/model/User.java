@@ -88,6 +88,8 @@ public class User {
     }
 
     /**
+     * Конструктор
+     *
      * @param firstName    имя
      * @param secondName   фамилия
      * @param middleName   отчество
