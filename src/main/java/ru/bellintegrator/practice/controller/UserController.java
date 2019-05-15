@@ -51,7 +51,7 @@ public class UserController {
      * @return пользователя с указанным идентификатором
      */
     @ApiOperation(value = "Get user by id", nickname = "getUserById", httpMethod = "GET")
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public UserView getById(@PathVariable Long id) {
         return userService.getById(id);
     }

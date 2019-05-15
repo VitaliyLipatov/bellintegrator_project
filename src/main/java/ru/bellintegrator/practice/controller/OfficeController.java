@@ -50,7 +50,7 @@ public class OfficeController {
      * @return офис с указанным идентификатором
      */
     @ApiOperation(value = "Get office by id", nickname = "getOfficeById", httpMethod = "GET")
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public OfficeToUpdate getById(@PathVariable Long id) {
         return officeService.getById(id);
     }

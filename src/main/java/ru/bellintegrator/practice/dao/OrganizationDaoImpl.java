@@ -73,6 +73,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
         organization.setActive(updateOrganization.getActive());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void save(Organization organization) {
         em.persist(organization);

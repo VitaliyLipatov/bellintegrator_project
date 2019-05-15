@@ -32,7 +32,7 @@ public class DocTypeDaoImpl implements DocTypeDao {
      */
     @Override
     public List<DocType> list() {
-        TypedQuery<DocType> query = em.createQuery("SELECT d FROM Doc_Type d", DocType.class);
+        TypedQuery<DocType> query = em.createQuery("SELECT d FROM DocType d", DocType.class);
         return query.getResultList();
     }
 
@@ -41,7 +41,7 @@ public class DocTypeDaoImpl implements DocTypeDao {
      */
     @Override
     public DocType getByCode(String code) {
-        TypedQuery<DocType> query = em.createQuery("SELECT d FROM Doc_Type d WHERE d.code = :code", DocType.class);
+        TypedQuery<DocType> query = em.createQuery("SELECT d FROM DocType d WHERE d.code = :code", DocType.class);
         query.setParameter("code", code);
         DocType docType;
         try {

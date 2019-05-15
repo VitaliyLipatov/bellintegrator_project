@@ -13,13 +13,13 @@ public class DocTypeView {
     /**
      * Код документа
      */
-    public Integer code;
+    public String code;
 
     @Override
     public String toString() {
         return "DocTypeView{" +
                 "name='" + name + '\'' +
-                ", code=" + code +
+                ", code='" + code + '\'' +
                 '}';
     }
 }

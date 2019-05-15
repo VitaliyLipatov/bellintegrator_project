@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
         if (filter.getPosition() != null) {
             predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(userRoot.get("position"), "%" + filter.getPosition() + "%"));
         }
-        if (filter.getDoc().getDocType() != null) {
+        if (filter.getDoc().getDocType().getCode() != null) {
             predicate = criteriaBuilder.equal(userRoot.get("doc").get("docType"), filter.getDoc().getDocType());
         }
         if (filter.getCountry().getCode() != null) {
@@ -82,9 +82,7 @@ public class UserDaoImpl implements UserDao {
         user.setPosition(updateUser.getPosition());
         user.setPhone(updateUser.getPhone());
         user.setDoc(updateUser.getDoc());
-        user.getDoc().setNumber(updateUser.getDoc().getNumber());
-        user.getDoc().setDate(updateUser.getDoc().getDate());
-        user.getCountry().setCode(updateUser.getCountry().getCode());
+        user.setCountry(updateUser.getCountry());
         user.setIdentified(updateUser.getIdentified());
     }
 

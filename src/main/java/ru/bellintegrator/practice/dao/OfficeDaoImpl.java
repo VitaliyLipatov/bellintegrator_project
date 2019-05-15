@@ -1,7 +1,6 @@
 package ru.bellintegrator.practice.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.PagedResources;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.practice.model.Office;
 

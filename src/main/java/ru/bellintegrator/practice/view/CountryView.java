@@ -8,18 +8,18 @@ public class CountryView {
     /**
      * Наименование страны
      */
-    public String country;
+    public String name;
 
     /**
      * Код страны
      */
-    public Integer code;
+    public String code;
 
     @Override
     public String toString() {
         return "CountryView{" +
-                "country='" + country + '\'' +
-                ", code=" + code +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
                 '}';
     }
 }

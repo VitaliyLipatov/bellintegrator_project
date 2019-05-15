@@ -50,7 +50,7 @@ public class OrganizationController {
      * @return организацию с указанным идентификатором
      */
     @ApiOperation(value = "Get organization by id", nickname = "getOrganizationById", httpMethod = "GET")
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public OrganizationView getById(@PathVariable Long id) {
         return organizationService.getById(id);
     }

@@ -38,7 +38,7 @@ public class OrganizationToSave {
     /**
      * Флаг, показывающий является ли организация действующей
      */
-    public boolean isActive;
+    public Boolean isActive;
 
     @Override
     public String toString() {
