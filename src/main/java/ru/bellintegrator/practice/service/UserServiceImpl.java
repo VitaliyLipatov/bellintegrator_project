@@ -176,7 +176,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private void validateUpdate(UserToUpdate updateView) {
-        StringBuilder message = new StringBuilder("");
+        StringBuilder message = new StringBuilder();
         if (updateView.id == null) {
             message.append("Field \"id\" is null. ");
         }
@@ -213,7 +213,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private void validateSave(UserToSave saveView) {
-        StringBuilder message = new StringBuilder("");
+        StringBuilder message = new StringBuilder();
         if (saveView.officeId == null) {
             message.append("Field \"id\" is null. ");
         }

@@ -130,7 +130,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     private void validateUpdate(OrganizationView updateView) {
-        StringBuilder message = new StringBuilder("");
+        StringBuilder message = new StringBuilder();
         if (updateView.id == null) {
             message.append("Field \"id\"is null");
         }
@@ -185,7 +185,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     private void validateSaveView(OrganizationToSave saveView) {
-        StringBuilder message = new StringBuilder("");
+        StringBuilder message = new StringBuilder();
         if (saveView.name == null || !isNameValid(saveView.name)) {
             message.append("Field \"name\"is null or invalid");
         }

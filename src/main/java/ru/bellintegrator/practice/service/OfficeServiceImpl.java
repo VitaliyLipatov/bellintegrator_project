@@ -128,7 +128,7 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     private void validateUpdate(OfficeToUpdate updateView) {
-        StringBuilder message = new StringBuilder("");
+        StringBuilder message = new StringBuilder();
         if (updateView.name == null || !isNameValid(updateView.name)) {
             message.append("Field \"name\"is null or invalid. ");
         }
@@ -147,7 +147,7 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     private void validateSave(OfficeToSave saveView) {
-        StringBuilder message = new StringBuilder("");
+        StringBuilder message = new StringBuilder();
         if (saveView.orgId == null) {
             message.append("Field \"orgId\"is null");
         }

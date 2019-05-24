@@ -1,5 +1,7 @@
 package ru.bellintegrator.practice.view;
 
+import java.util.Date;
+
 /**
  * Класс сохранения входных данных пользователя
  */
@@ -53,7 +55,7 @@ public class UserToSave {
     /**
      * Дата документа пользователя
      */
-    public String docDate;
+    public Date docDate;
 
     /**
      * Код гражданства пользователя

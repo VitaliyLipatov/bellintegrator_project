@@ -1,5 +1,7 @@
 package ru.bellintegrator.practice.view;
 
+import java.util.Date;
+
 /**
  * Класс представления пользователя
  */
@@ -48,7 +50,7 @@ public class UserView {
     /**
      * Дата документа пользователя
      */
-    public String docDate;
+    public Date docDate;
 
     /**
      * Гражданство пользователя

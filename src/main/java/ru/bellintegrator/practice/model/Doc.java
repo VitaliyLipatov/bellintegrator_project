@@ -1,12 +1,7 @@
 package ru.bellintegrator.practice.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.FetchType;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Документ сотрудника
@@ -31,8 +26,9 @@ public class Doc {
     /**
      * Дата документа
      */
+    @Temporal(TemporalType.DATE)
     @Column(name = "date", length = 50, nullable = false)
-    private String date;
+    private Date date;
 
     /**
      * Вид документа
@@ -61,11 +57,11 @@ public class Doc {
         this.number = number;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
