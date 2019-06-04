@@ -15,7 +15,7 @@ public interface OfficeDao {
      * @param filter объект с данными фильтрации
      * @return отфильтрованный список офисов
      */
-    List<Office> list(Office filter);
+    List<Office> list(Long orgId, Office filter);
 
     /**
      * Возвращает офис с указанным идентификатором
@@ -30,7 +30,7 @@ public interface OfficeDao {
      *
      * @param office объект с новыми данными об офисе
      */
-    void update(Office office);
+    void update(Long id, Office office);
 
     /**
      * Сохраняет новый офис

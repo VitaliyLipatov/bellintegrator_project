@@ -11,6 +11,7 @@ import ru.bellintegrator.practice.exception.RecordNotFoundException;
 import ru.bellintegrator.practice.exception.WrongRequestException;
 import ru.bellintegrator.practice.model.Doc;
 import ru.bellintegrator.practice.model.DocType;
+import ru.bellintegrator.practice.model.Office;
 import ru.bellintegrator.practice.model.User;
 import ru.bellintegrator.practice.view.UserListFilter;
 import ru.bellintegrator.practice.view.UserToSave;
@@ -48,6 +49,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public List<UserView> list(UserListFilter filterView) {
+        if (filterView == null) {
+            throw new WrongRequestException("Empty input data ");
+        }
         validateFilter(filterView);
         User filter = new User();
         filter.setOffice(officeDao.getById(filterView.officeId));
@@ -61,7 +65,7 @@ public class UserServiceImpl implements UserService {
         doc.setDocType(docType);
         filter.setDoc(doc);
         filter.setCountry(countriesDao.getByCode(filterView.citizenshipCode));
-        List<User> list = userDao.list(filter);
+        List<User> list = userDao.list(filterView.officeId, filter);
         return list.stream().map(mapUser()).collect(Collectors.toList());
     }
 
@@ -100,6 +104,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void update(UserToUpdate updateView) {
+        if (updateView == null) {
+            throw new WrongRequestException("Empty input data ");
+        }
         validateUpdate(updateView);
         User updateUser = new User();
         updateUser.setOffice(officeDao.getById(updateView.id));
@@ -123,7 +130,7 @@ public class UserServiceImpl implements UserService {
         updateUser.setDoc(doc);
         updateUser.setCountry(countriesDao.getByCode(updateView.citizenshipCode));
         updateUser.setIdentified(updateView.isIdentified);
-        userDao.update(updateUser);
+        userDao.update(updateView.id, updateUser);
     }
 
     /**
@@ -132,6 +139,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void save(UserToSave saveView) {
+        if (saveView == null) {
+            throw new WrongRequestException("Empty input data ");
+        }
         validateSave(saveView);
         User saveUser = new User();
         officeDao.getById(saveView.officeId).addUser(saveUser);
@@ -235,7 +245,7 @@ public class UserServiceImpl implements UserService {
         if (saveView.docNumber != null) {
             message.append("Field \"docNumber\" is invalid. ");
         }
-        if (saveView.docDate == null) {
+        if (saveView.docDate != null) {
             message.append("Field \"docDate\" is null. ");
         }
         if (saveView.citizenshipCode == null) {
@@ -249,9 +259,6 @@ public class UserServiceImpl implements UserService {
         }
         if (officeDao.getById(saveView.officeId) == null) {
             message.append("Office with id = ").append(saveView.officeId).append(" was not found. ");
-        }
-        if (userDao.getById(saveView.officeId) == null) {
-            message.append("Record with id = ").append(saveView.officeId).append(" was not found in Users. ");
         }
         if (countriesDao.getByCode(saveView.citizenshipCode) == null) {
             message.append("Country with code = ").append(saveView.citizenshipCode).append(" was not found.");

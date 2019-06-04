@@ -62,8 +62,8 @@ public class OrganizationDaoImpl implements OrganizationDao {
      * {@inheritDoc}
      */
     @Override
-    public void update(Organization updateOrganization) {
-        Organization organization = getById(updateOrganization.getId());
+    public void update(Long id, Organization updateOrganization) {
+        Organization organization = getById(id);
         organization.setName(updateOrganization.getName());
         organization.setFullName(updateOrganization.getFullName());
         organization.setInn(updateOrganization.getInn());

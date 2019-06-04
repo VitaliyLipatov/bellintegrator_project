@@ -44,13 +44,16 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional(readOnly = true)
     public List<OfficeToUpdate> list(OfficeListFilter filterView) {
+        if (filterView == null) {
+            throw new WrongRequestException("Empty input data ");
+        }
         validateFilter(filterView);
         Office filter = new Office();
         filter.setOrganization(organizationDao.getById(filterView.orgId));
         filter.setName(filterView.name);
         filter.setPhone(filterView.phone);
         filter.setActive(filterView.isActive);
-        List<Office> list = officeDao.list(filter);
+        List<Office> list = officeDao.list(filterView.orgId, filter);
         return list.stream().map(mapOffice()).collect(Collectors.toList());
     }
 
@@ -65,7 +68,7 @@ public class OfficeServiceImpl implements OfficeService {
         }
         Office office = officeDao.getById(officeId);
         if (office == null) {
-            throw new RecordNotFoundException("Record with id " + officeId + "was not found");
+            throw new RecordNotFoundException("Record with id " + officeId + " was not found");
         }
         OfficeToUpdate updateView = new OfficeToUpdate();
         updateView.id = office.getId();
@@ -82,6 +85,9 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional
     public void update(OfficeToUpdate updateView) {
+        if (updateView == null) {
+            throw new WrongRequestException("Empty input data ");
+        }
         validateUpdate(updateView);
         Office updateOffice = new Office();
         updateOffice.setName(updateView.name);
@@ -92,7 +98,7 @@ public class OfficeServiceImpl implements OfficeService {
             updateOffice.setPhone(officeDao.getById(updateView.id).getPhone());
         }
         updateOffice.setActive(updateView.isActive != null ? updateView.isActive : officeDao.getById(updateView.id).getActive());
-        officeDao.update(updateOffice);
+        officeDao.update(updateView.id, updateOffice);
     }
 
     /**
@@ -101,13 +107,16 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional
     public void save(OfficeToSave saveView) {
+        if (saveView == null) {
+            throw new WrongRequestException("Empty input data ");
+        }
         validateSave(saveView);
         Office saveOffice = new Office();
-        organizationDao.getById(saveView.orgId).addOffice(saveOffice);
         saveOffice.setName(saveView.name);
         saveOffice.setAddress(saveView.address);
         saveOffice.setPhone(saveView.phone);
         saveOffice.setActive(saveView.isActive);
+        organizationDao.getById(saveView.orgId).addOffice(saveOffice);
         officeDao.save(saveOffice);
     }
 
@@ -151,17 +160,14 @@ public class OfficeServiceImpl implements OfficeService {
         if (saveView.orgId == null) {
             message.append("Field \"orgId\"is null");
         }
-        if (saveView.name == null || !isNameValid(saveView.name)) {
-            message.append("Field \"name\"is null or invalid");
+        if (saveView.name != null && !isNameValid(saveView.name)) {
+            message.append("Field \"name\"is invalid");
         }
-        if (saveView.address == null || !isAddressValid(saveView.address)) {
-            message.append("Field \"address\"is null or invalid");
+        if (saveView.address != null && !isAddressValid(saveView.address)) {
+            message.append("Field \"address\"is invalid");
         }
-        if (saveView.phone == null || !isPhoneValid(saveView.phone)) {
-            message.append("Field \"phone\"is null or invalid");
-        }
-        if (saveView.isActive == null) {
-            message.append("Field \"isActive\"is null");
+        if (saveView.phone != null && !isPhoneValid(saveView.phone)) {
+            message.append("Field \"phone\"is invalid");
         }
         if (message.length() > 0) {
             throw new WrongRequestException(message.toString().trim());
@@ -172,11 +178,11 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     private boolean isNameValid(String name) {
-        return name.matches("[a-zA-Zа-яА-Я\"-]{1,50}");
+        return name.matches("[a-zA-Zа-яА-Я\"\\s-]{1,50}");
     }
 
     private boolean isAddressValid(String address) {
-        return address.matches("[a-zA-Zа-яА-Я0-9\"-]{1,200}");
+        return address.matches("[a-zA-Zа-яА-Я0-9\"\\s,.-]{1,200}");
     }
 
     private boolean isPhoneValid(String phone) {

@@ -17,7 +17,7 @@ public class ExceptionResponse {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ErrorView exceptionHandler(RuntimeException e) {
         ErrorView errorView = new ErrorView();
-        errorView.error = e.getMessage();
+        errorView.error = e.getLocalizedMessage();
         return errorView;
     }
 
@@ -25,7 +25,7 @@ public class ExceptionResponse {
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorView unexpectedExceptionHandler(Exception e) {
         ErrorView errorView = new ErrorView();
-        errorView.error = "Unexpected error. ";
+        errorView.error = e.getLocalizedMessage();
         return errorView;
     }
 }

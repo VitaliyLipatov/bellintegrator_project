@@ -34,11 +34,11 @@ public class OfficeDaoImpl implements OfficeDao {
      * {@inheritDoc}
      */
     @Override
-    public List<Office> list(Office filter) {
+    public List<Office> list(Long orgId, Office filter) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Office> criteriaQuery = criteriaBuilder.createQuery(Office.class);
         Root<Office> officeRoot = criteriaQuery.from(Office.class);
-        Predicate predicate = criteriaBuilder.equal(officeRoot.get("organization").get("id"), filter.getOrganization().getId());
+        Predicate predicate = criteriaBuilder.equal(officeRoot.get("organization").get("id"), orgId);
         if (filter.getName() != null) {
             predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(officeRoot.get("name"), "%" + filter.getName() + "%"));
         }
@@ -65,8 +65,8 @@ public class OfficeDaoImpl implements OfficeDao {
      * {@inheritDoc}
      */
     @Override
-    public void update(Office updateOffice) {
-        Office office = getById(updateOffice.getId());
+    public void update(Long id, Office updateOffice) {
+        Office office = getById(id);
         office.setName(updateOffice.getName());
         office.setAddress(updateOffice.getName());
         office.setPhone(updateOffice.getPhone());

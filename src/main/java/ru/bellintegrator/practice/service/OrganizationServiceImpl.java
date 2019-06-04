@@ -40,6 +40,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional(readOnly = true)
     public List<OrganizationView> list(OrganizationListFilter filterView) {
+        if (filterView == null) {
+            throw new WrongRequestException("Empty input data ");
+        }
         validateFilter(filterView);
         Organization filter = new Organization();
         filter.setName(filterView.name);
@@ -80,6 +83,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional(readOnly = true)
     public void update(OrganizationView updateView) {
+        if (updateView == null) {
+            throw new WrongRequestException("Empty input data ");
+        }
         validateUpdate(updateView);
         Organization updateOrganization = new Organization();
         updateOrganization.setName(updateView.name);
@@ -93,7 +99,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             updateOrganization.setPhone(organizationDao.getById(updateView.id).getPhone());
         }
         updateOrganization.setActive(updateView.isActive != null ? updateView.isActive : organizationDao.getById(updateView.id).getActive());
-        organizationDao.update(updateOrganization);
+        organizationDao.update(updateView.id, updateOrganization);
     }
 
     /**
@@ -102,6 +108,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional
     public void save(OrganizationToSave saveView) {
+        if (saveView == null) {
+            throw new WrongRequestException("Empty input data ");
+        }
         validateSaveView(saveView);
         Organization saveOrganization = new Organization(saveView.name, saveView.fullName, saveView.inn,
                 saveView.kpp, saveView.address, saveView.phone, saveView.isActive);
@@ -149,7 +158,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         if (updateView.address == null || !isAddressValid(updateView.address)) {
             message.append("Field \"address\"is null or invalid");
         }
-        if (updateView.phone == null || !isPhoneValid(updateView.phone)) {
+        if (updateView.phone != null && !isPhoneValid(updateView.phone)) {
             message.append("Field \"phone\"is null or invalid");
         }
         if (message.length() > 0) {
@@ -161,27 +170,27 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     private boolean isNameValid(String name) {
-        return name.matches("[a-zA-Zа-яА-Я\"-]{1,50}");
+        return name.matches("[a-zA-Zа-яА-Я\"\\s-]{1,50}");
     }
 
     private boolean isFullNameValid(String fullName) {
-        return fullName.matches("[a-zA-Zа-яА-Я\"-]{1,100}");
+        return fullName.matches("[a-zA-Zа-яА-Я\"\\s,.-]{1,100}");
     }
 
     private boolean isInnValid(String inn) {
-        return inn.matches("[0,9]{10}");
+        return inn.matches("[0-9]{10}");
     }
 
     private boolean isKppValid(String kpp) {
-        return kpp.matches("[0,9]{9}");
+        return kpp.matches("[0-9]{9}");
     }
 
     private boolean isAddressValid(String address) {
-        return address.matches("[a-zA-Zа-яА-Я0-9\"-]{1,200}");
+        return address.matches("[a-zA-Zа-яА-Я0-9\"\\s,.-]{1,200}");
     }
 
     private boolean isPhoneValid(String phone) {
-        return phone.matches("[0,9]{20}");
+        return phone.matches("[0-9]{20}");
     }
 
     private void validateSaveView(OrganizationToSave saveView) {

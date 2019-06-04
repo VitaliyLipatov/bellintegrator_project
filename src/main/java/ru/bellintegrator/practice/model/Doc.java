@@ -27,7 +27,7 @@ public class Doc {
      * Дата документа
      */
     @Temporal(TemporalType.DATE)
-    @Column(name = "date", length = 50, nullable = false)
+    @Column(name = "date", nullable = false)
     private Date date;
 
     /**

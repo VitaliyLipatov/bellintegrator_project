@@ -30,7 +30,7 @@ public interface OrganizationDao {
      *
      * @param organization объект с новыми данными об организации
      */
-    void update(Organization organization);
+    void update(Long id, Organization organization);
 
     /**
      * Сохраняет информацию о новой организации

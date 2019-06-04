@@ -15,7 +15,7 @@ public interface UserDao {
      * @param filter объект с данными фильтрации
      * @return отфильтрованный список сотрудников
      */
-    List<User> list(User filter);
+    List<User> list(Long officeId, User filter);
 
     /**
      * Возвращает сотрудника с указанным идентификатором
@@ -30,7 +30,7 @@ public interface UserDao {
      *
      * @param user объект с новыми данными о сотруднике
      */
-    void update(User user);
+    void update(Long id, User user);
 
     /**
      * Сохраняет информацию о новом сотруднике

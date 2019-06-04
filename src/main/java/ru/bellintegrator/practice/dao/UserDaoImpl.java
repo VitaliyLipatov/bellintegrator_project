@@ -2,6 +2,7 @@ package ru.bellintegrator.practice.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.CollectionUtils;
 import ru.bellintegrator.practice.model.User;
 
 import javax.persistence.EntityManager;
@@ -34,11 +35,11 @@ public class UserDaoImpl implements UserDao {
      * {@inheritDoc}
      */
     @Override
-    public List<User> list(User filter) {
+    public List<User> list(Long officeId, User filter) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
         Root<User> userRoot = criteriaQuery.from(User.class);
-        Predicate predicate = criteriaBuilder.equal(userRoot.get("office").get("id"), filter.getOffice().getId());
+        Predicate predicate = criteriaBuilder.equal(userRoot.get("office").get("id"), officeId);
         if (filter.getFirstName() != null) {
             predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(userRoot.get("firstName"), "%" + filter.getFirstName() + "%"));
         }
@@ -51,10 +52,10 @@ public class UserDaoImpl implements UserDao {
         if (filter.getPosition() != null) {
             predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(userRoot.get("position"), "%" + filter.getPosition() + "%"));
         }
-        if (filter.getDoc().getDocType().getCode() != null) {
+        if (filter.getDoc() != null && filter.getDoc().getDocType().getCode() != null) {
             predicate = criteriaBuilder.equal(userRoot.get("doc").get("docType"), filter.getDoc().getDocType());
         }
-        if (filter.getCountry().getCode() != null) {
+        if (filter.getCountry() != null && filter.getCountry().getCode() != null) {
             predicate = criteriaBuilder.equal(userRoot.get("country").get("code"), filter.getCountry().getCode());
         }
         criteriaQuery.select(userRoot).where(predicate);
@@ -74,8 +75,8 @@ public class UserDaoImpl implements UserDao {
      * {@inheritDoc}
      */
     @Override
-    public void update(User updateUser) {
-        User user = getById(updateUser.getId());
+    public void update(Long id, User updateUser) {
+        User user = getById(id);
         user.setFirstName(updateUser.getFirstName());
         user.setSecondName(updateUser.getSecondName());
         user.setMiddleName(updateUser.getMiddleName());

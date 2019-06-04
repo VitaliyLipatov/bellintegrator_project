@@ -38,7 +38,7 @@ create TABLE IF NOT EXISTS Doc (
     id              INTEGER PRIMARY KEY AUTO_INCREMENT,
     type_id         INTEGER NOT NULL,
     number          VARCHAR(50) NOT NULL,
-    date            VARCHAR(50) NOT NULL
+    date            DATE NOT NULL
     );
 
 create TABLE IF NOT EXISTS Doc_Type(
