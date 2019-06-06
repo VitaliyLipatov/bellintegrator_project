@@ -20,6 +20,8 @@ import ru.bellintegrator.practice.view.UserView;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -269,22 +271,32 @@ public class UserServiceImpl implements UserService {
     }
 
     private boolean isFirstNameValid(String name) {
-        return name.matches("[a-zA-Zа-яА-Я\"-]{1,50}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я\"-]{1,50}");
+        Matcher matcher = regex.matcher(name);
+        return matcher.matches();
     }
 
     private boolean isSecondNameValid(String name) {
-        return name.matches("[a-zA-Zа-яА-Я\"-]{1,50}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я\"-]{1,50}");
+        Matcher matcher = regex.matcher(name);
+        return matcher.matches();
     }
 
     private boolean isMiddleNameValid(String name) {
-        return name.matches("[a-zA-Zа-яА-Я\"-]{1,50}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я\"-]{1,50}");
+        Matcher matcher = regex.matcher(name);
+        return matcher.matches();
     }
 
     private boolean isPositionValid(String position) {
-        return position.matches("[A-Za-zА-Яа-я ,-]{1,50}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я\"\\s-]{1,50}");
+        Matcher matcher = regex.matcher(position);
+        return matcher.matches();
     }
 
     private boolean isPhoneValid(String phone) {
-        return phone.matches("[0,9]{20}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я\"-]{1,20}");
+        Matcher matcher = regex.matcher(phone);
+        return matcher.matches();
     }
 }

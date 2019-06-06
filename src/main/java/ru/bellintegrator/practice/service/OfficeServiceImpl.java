@@ -15,6 +15,8 @@ import ru.bellintegrator.practice.view.OfficeToUpdate;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -178,14 +180,20 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     private boolean isNameValid(String name) {
-        return name.matches("[a-zA-Zа-яА-Я\"\\s-]{1,50}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я\"\\s-]{1,50}");
+        Matcher matcher = regex.matcher(name);
+        return matcher.matches();
     }
 
     private boolean isAddressValid(String address) {
-        return address.matches("[a-zA-Zа-яА-Я0-9\"\\s,.-]{1,200}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я0-9\"\\s,.-]{1,200}");
+        Matcher matcher = regex.matcher(address);
+        return matcher.matches();
     }
 
     private boolean isPhoneValid(String phone) {
-        return phone.matches("[0,9]{20}");
+        Pattern regex = Pattern.compile("[0,9]{20}");
+        Matcher matcher = regex.matcher(phone);
+        return matcher.matches();
     }
 }

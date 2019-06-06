@@ -166,7 +166,7 @@ public class UserControllerTest {
 
     @Test
     public void testSaveError() throws Exception {
-        String jsonBodyFilter = "{\"officeId\": 3, \"firstName\": \"Василий\"}";
+        String jsonBodyFilter = "{\"officeId\": 3, \"firstName\": \"Вас**илий\"}";
         mockMvc.perform(post("/api/office/save")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(jsonBodyFilter))

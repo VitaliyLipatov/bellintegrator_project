@@ -14,6 +14,8 @@ import ru.bellintegrator.practice.view.OrganizationView;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -170,27 +172,39 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     private boolean isNameValid(String name) {
-        return name.matches("[a-zA-Zа-яА-Я\"\\s-]{1,50}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я\"\\s-]{1,50}");
+        Matcher matcher = regex.matcher(name);
+        return matcher.matches();
     }
 
     private boolean isFullNameValid(String fullName) {
-        return fullName.matches("[a-zA-Zа-яА-Я\"\\s,.-]{1,100}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я\"\\s,.-]{1,100}");
+        Matcher matcher = regex.matcher(fullName);
+        return matcher.matches();
     }
 
     private boolean isInnValid(String inn) {
-        return inn.matches("[0-9]{10}");
+        Pattern regex = Pattern.compile("[0-9]{10}");
+        Matcher matcher = regex.matcher(inn);
+        return matcher.matches();
     }
 
     private boolean isKppValid(String kpp) {
-        return kpp.matches("[0-9]{9}");
+        Pattern regex = Pattern.compile("[0-9]{9}");
+        Matcher matcher = regex.matcher(kpp);
+        return matcher.matches();
     }
 
     private boolean isAddressValid(String address) {
-        return address.matches("[a-zA-Zа-яА-Я0-9\"\\s,.-]{1,200}");
+        Pattern regex = Pattern.compile("[a-zA-Zа-яА-Я0-9\"\\s,.-]{1,200}");
+        Matcher matcher = regex.matcher(address);
+        return matcher.matches();
     }
 
     private boolean isPhoneValid(String phone) {
-        return phone.matches("[0-9]{20}");
+        Pattern regex = Pattern.compile("[0-9]{20}");
+        Matcher matcher = regex.matcher(phone);
+        return matcher.matches();
     }
 
     private void validateSaveView(OrganizationToSave saveView) {
